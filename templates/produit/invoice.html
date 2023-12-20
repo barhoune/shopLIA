@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>Ecommerce</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: rgb(255, 250, 243); 
+       
+    }
+    .card {
+        background-color: rgb(255, 250, 243);
+        margin: 10%;
+        width: 80%;
+        border: none;
+       
+      
+    }
+    .card::before{
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        background-size: 35%;
+        background-image: url("/static/images/logo.png");
+        transform: rotate(1.8deg);
+        opacity: 0.07;
+    }
+
+    .invoice-title {
+        margin-top: 10%;
+        
+        font-weight: 600;
+        font-size: 2cm;
+        font-family: 'Southland' !important;
+    }
+
+    
+    thead,
+    tfoot {
+        border-bottom: solid 2px black;
+        border-top: solid 2px black !important;
+    }
+
+    th,
+    td {
+        background: transparent!important;
+    }
+    .thank{
+        font-weight: 500;
+        font-size: 0.8cm;
+        font-family: 'Cherolina'!important;
+    }
+    
+</style>
+<div class="container-fluid ">
+    <div class="card">
+        <div class="card-body ">
+            <h1 class="invoice-title">INVOICE</h1>
+        </div>
+        <div class="container invo">
+            <div class="row">
+                <div class="col md-4" style="margin-bottom: 40px;">
+                    <h6>BILLED TO:</h6>
+                    <span>{{ request.user.first_name}} {{ request.user.last_name}}</span>
+                    <span>{{ request.user.username }}</span><br>
+                    <span>{{ request.user.email}}</span><br>
+                </div>
+
+            </div>
+            <table class="table table-borderless ">
+                <thead>
+                    <tr>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">UNIT PRICE</th>
+                        <th scope="col">QTY</th>
+                        <th scope="col">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for order in orders %}
+                    <tr>
+                        <td> {{order.product.name}} </td>
+                        <td> {{order.product.price}} Dh </td>
+                        <td> {{order.qte}} </td>
+                        <td> {% widthratio order.qte 1 order.product.price %} Dh </td>
+                        
+                    </tr>
+                   {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="col">TOTAL</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">{{total}} Dh</th>
+                    </tr>
+
+                </tfoot>
+            </table>
+            <div class="row">
+                <div class="col md-4" style="margin-top: 40px; margin-bottom: 40px;">
+                    <span><b>ORDER NO:</b></span><br>
+                    <span>{{oid}}</span><br>
+                    <span><b>FIRST ORDER AT:</b></span><br>
+                    <span>{{orders.first.dateOrder}}</span> <br>
+                    <span><b>RECENT ORDER AT:</b></span><br>
+                    <span>{{orders.last.dateOrder}}</span>
+                    
+                </div>
+                <div class="col md-4" style="margin-top: 20px; margin-bottom: 40px;">
+                    <span class="thank">Hamza Barhoune</span><br>
+                    <span class="thank">Salah Habyby</span><br>
+                    <span style="font-family: 'Ubuntu';">Thank you for  purchasing <br>from <span style="font-family: 'Altero';color: rgb(255, 81, 0);">SHOPlia</span></span><br>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<script type="text/javascript">
+    $(document).ready(function () {
+        window.print();
+    });    
+</script>
+</div>

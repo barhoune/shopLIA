@@ -1,0 +1,119 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/login.css" />
+</head>
+<style>
+    a {
+        color: black;
+        font-weight: 700;
+        font-size: larger;
+    }
+    label{
+        color: white !important ;
+    }
+    .form-control {
+        border-radius: 0;
+        border: solid 2px black;
+    }
+
+    label {
+        font-family: 'Ubuntu';
+        font-weight: 500;
+        color: black;
+    }
+
+    .btona {
+        font-weight: 500;
+        color: black;
+    }
+
+    .btona:hover {
+        background-color: black !important;
+        font-weight: 500;
+    }
+    .card{
+       zoom: 90%;
+    }
+</style>
+
+<body>
+    <div class="container mt-5">
+        <div class="card" style="border-radius: 0;">
+            <div class="card-body p-5">
+                <div class="text-center ">
+                    <a href="{%url 'index' %}"><img src="/static/images/logo.png" alt="logo" width="200px" style="margin-bottom: 20px;"></a>
+                </div>
+                <h2 class="mb-4 text-center ">Sign Up</h2>
+                <form method="post" action="{% url 'signup' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <!-- Bootstrap form styling -->
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.username.id_for_label }}">Username</label>
+                            <input type="text" name="{{ form.username.name }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.password1.id_for_label }}">Password</label>
+                            <input type="password" name="{{ form.password1.name }}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                            <input type="password" name="{{ form.password2.name }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                            <input type="text" name="{{ form.first_name.name }}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                            <input type="text" name="{{ form.last_name.name }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.email.id_for_label }}">Email</label>
+                            <input type="email" name="{{ form.email.name }}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.address.id_for_label }}">Address</label>
+                            <input type="text" name="{{ form.address.name }}" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Gender</label>
+                            {{ form.gender }}
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input class="btn btn-outline-dark btn-lg px-5 btona" type="submit"
+                            style="border-radius: 0;border:solid 2px black;" value="Sign Up">
+                    </div>
+                </form>
+                <br><br>
+                <div class="text-center">
+                    <p class="mb-0 text-white ">Already have an account? <a href="{%url 'login' %}" class="fw-bold sign">Login</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

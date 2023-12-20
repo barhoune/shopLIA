@@ -1,0 +1,14 @@
+img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);    
+}
+.form-control{
+    border: 2px solid black;
+    border-radius: 0px;
+}
+
+@media (max-width:800px) {
+    .card{
+        transform: scale(0.7);
+    }
+}

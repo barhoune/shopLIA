@@ -1,0 +1,50 @@
+{% include 'header.html' %}
+<link rel="stylesheet" href="/static/css/order.css">
+
+<div class="container py-5">
+  <h2 style="text-align: center;">List of Orders <a href="{% url 'invoice' %}" title="Print Invoice"><i class="bi bi-printer-fill"></i>  </a></h2>
+  <div class="row justify-content-center mb-3">
+    {%for order in orders%}
+    <div class="col-md-12 col-xl-10">
+      <div class="card shadow-2 border">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+              <div class="bg-image hover-zoom ripple rounded ripple-surface">
+               <a href="{% url 'produit' order.product.id %}"> <img style="border-radius: 25% 0%;box-shadow: 1px 2px 10px rgba(165, 165, 165, 0.651);"
+                  src="{{order.product.image.url}}" class="w-100" /> </a>
+                <a href="#!">
+                  <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="hadak col-md-5 col-lg-5 col-xl-5" style="margin-top: 40px; margin-left: 20px;">
+              <h3>{{order.product.name}}</h3>
+              <div class="mt-1 mb-0 text-muted ">
+                <a class="btn btn-outline-dark disabled border-2"
+                  style="border-radius: 0px;"><b>{{order.product.categorie.name}}</b></a>
+
+              </div>
+
+            </div>
+            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+              <div class="d-flex flex-row align-items-center mb-1" style="margin-top: 40px;">
+                <h4 class="mb-1 me-1">Total Price : <span class="btn btn-outline-success disabled">{% widthratio order.qte 1 order.product.price %}</span></h4>
+              </div>
+              <div class="d-flex flex-row">
+                <h4>Quantity: </h4>
+                <h4 style="margin-left: 50px;">{{order.qte}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <div>
+    
+    </div>
+  </div>
+</div>

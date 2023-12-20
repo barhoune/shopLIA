@@ -1,0 +1,74 @@
+.imgads {
+  width: 1200px;
+  height: 500px;
+  display: block;
+  border-radius: 2px;
+  margin-left: 2cm;
+}
+
+a {
+  font-size: large;
+  color: black !important;
+}
+
+.welcome1 {
+
+  font-family: 'Ubuntu';
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  text-align: justify;
+
+}
+.welcome2{
+font-family: 'Ubuntu';
+font-size: 18px;
+letter-spacing: 0.05em;
+text-align: center;
+margin-top: 50px;
+}
+.imgproduct{
+  width: 270px;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 991px) {
+  .imgads {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    margin-left: 0px;
+  }
+
+  .welcome1 {
+    font-size: 15px !important;
+    text-align: left !important;
+    margin-left: 10px;
+  }
+
+  .welcome2 {
+    margin-top: 10px !important;
+    font-size: 13px !important;
+  }
+
+  .categories a img {
+    height: 50px !important;
+    width: 50px;
+  }
+
+  .categories a h4 {
+    font-size: small;
+  }
+
+  .test {
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    max-width: 600px !important;
+  }
+
+  .clas {
+    transform: scale(0.9, 0.9) !important;
+  }
+}

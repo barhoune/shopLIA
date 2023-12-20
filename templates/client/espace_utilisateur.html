@@ -1,0 +1,152 @@
+{% include '../header.html' %}
+{% load static %}
+
+<!-- navigation salat hna -->
+<!-- dik text li kikon fga3 les site -->
+<div class="container">
+
+  <h1 style="margin-left: 6%; margin-top: 5%; letter-spacing: -0.07em">
+    Welcome {{request.user.username}} to <b style="font-family: 'Altero'; color: #ff3c00">SHOPlia</b>
+  </h1>
+  <div class="container-fluid" style="margin-left: 7%; margin-top: 1%; margin-bottom: 30px; width: 50%">
+    <p class="welcome1">
+      Experience shopping redefined at our 1 stop shopping destination, where
+      your desires meet innovation!
+    </p>
+  </div>
+
+  <!-- sala text -->
+  <!-- galerie -->
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/static/images/Ad1.jpg" class="imgads" />
+      </div>
+      <div class="carousel-item">
+        <img
+          src="/static/images/Ad2.jpg"
+          class="imgads" />
+      </div>
+      <div class="carousel-item">
+        <img src="/static/images/Ad3.jpg" class="imgads"
+          alt="..." />
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- salt hna dial ads -->
+
+  <p class="welcome2">
+    From cutting-edge gadgets to lifestyle essentials, immerse yourself in a
+    seamless shopping experience with intuitive navigation and personalized
+    recommendations tailored just for you. Explore now all the categories
+    bellow !
+  </p>
+
+  <div class="d-flex justify-content-center categories">
+    <a class="d-flex flex-column" style="margin: 3%; color: black">
+      <img src="{% static 'images/new.png'%}" style="max-width: 100px" />
+      <h4 style="text-align: center">New Arrivals</h4>
+    </a>
+    <a class="d-flex flex-column" style="margin: 3%; color: black" href="{%url 'liste_produits' '2'%}">
+      <img src="{% static 'images/electronics.png' %}" style="max-width: 100px" />
+      <h4 style="text-align: center">Electronics</h4>
+    </a>
+    <a class="d-flex flex-column" style="margin: 3%; color: black" href="{%url 'liste_produits' '9'%}">
+      <img src="{%static 'images/figurines.png' %} " style="max-width: 100px" />
+      <h4 style="text-align: center">Figurines</h4>
+    </a>
+    <a class="d-flex flex-column" style="margin: 3%; color: black" href="{%url 'liste_produits' '4'%}">
+      <img src="{% static 'images/accesories.png' %}" style="max-width: 100px" />
+      <h4 style="text-align: center">Accessories</h4>
+    </a>
+    <a class="d-flex flex-column" style="margin: 3%; color: black" href="{% url 'categories' %}">
+      <img src="{% static 'images/all.png' %} " style="max-width: 100px" />
+      <h4 style="text-align: center">See All</h4>
+    </a>
+  </div>
+  <!-- <div *ngFor=" let categorie of categories"> -->
+    {% for categories in categorie %}
+    <div>
+    <div class="d-flex justify-content-between">
+
+      <h3>{{categories.name}}</h3>
+      <a href="{% url 'liste_produits' categories.id %}" class="btn btn-link" style="
+            text-decoration: solid underline black 2px;
+            color: black;
+            font-family: 'Ubuntu';
+            font-size: 15px;
+          ">
+        <b> Show All </b>
+      </a>
+    </div>
+    <br />
+    <div class="owl-carousel owl-theme">
+      {% for pro in categories.cproducts.all %}
+      <div class="item">       
+        <a href="{% url 'produit' pro.id %}">
+        <div class="card" style="width: 350px; height: fit-content; margin-bottom: 30px">
+          <div class="card-body">
+            <div class="d-flex justify-content-center">
+              <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 clas"
+                style="width: 300px; height: 450px">
+                <div class="imgproduct">
+                  <img
+                   src="{{ pro.image.url }}"
+                    class="w-6 shadow-2" style="width: 250px" />
+                </div>
+                <div>
+                  <h4 class="mb-1"> {{pro.name}} </h4>
+                  <h6 class="mt-0 mb-3">{{ pro.price }} Dh</h6>
+                  <div class="car-buttons mt-5">
+                    <a href=""><i class="bi bi-search" style="color: black !important; font-size: 30px"></i></a>
+                    &nbsp;
+                    <a href="#"><i class="bi bi-bag-check-fill"
+                        style="color: black !important; font-size: 30px"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>   
+      </a>     
+      </div>
+      {% endfor %}
+    </div>
+  </div>{% endfor %}
+  <div>
+   
+  </div>
+  <div>
+    
+  </div>
+ 
+</div>
+
+{%block scripts %}
+<script>
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 3
+      }
+    }
+  })
+</script>
+{% endblock scripts %}

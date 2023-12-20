@@ -1,0 +1,50 @@
+{% include 'header.html'%}
+<link rel="stylesheet" href="/static/css/productstyle.css" />
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb" style="font-weight: 600;">
+    <li class="breadcrumb-item" onclick="location.href='{%url "espace_utilisateur"%}';">Home</li>
+    <li class="breadcrumb-item" onclick="location.href='{%url "categories"%}';">Category</li>
+    <li class="breadcrumb-item active" aria-current="page">{{category.name}}</li>
+  </ol>
+</nav>
+<div class="container">
+  <h2 style="text-align: center;">List of {{category.name}}</h2>
+  <div class="d-flex  justify-content-end ">
+    <div class="p-2"><b>Sort By<i class="bi bi-filter" style="font-size: larger;"></i></b> &nbsp; </div>
+    <div class="mb-3 " style="margin-right: 3%;">
+      <form method="get">
+      <select class="form-select sm" id="sortSelect" name="sort_by" onchange="this.form.submit()">
+        <option value="id" {% if sort_by == 'id' %}selected{% endif %}>Newest</option>
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Sort By Name A-Z</option>
+        <option value="-name" {% if sort_by == '-name' %}selected{% endif %}>Sort By Name Z-A</option>
+        <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Sort By Lowest Price</option>
+        <option value="-price" {% if sort_by == '-price' %}selected{% endif %}>Sort By Highest Price</option>        
+      </select></form>
+    </div>
+  </div>
+  <div class="container mt-100">
+    <div class="row">
+  
+      {% for pro in products%}
+      
+      <div class="col-md-3 col-sm-6" >           
+        <div class="card mb-30">
+          <a class="card-img-tiles" data-abc="true" href="{% url 'produit' pro.id %}">
+            <div class="inner">
+              <div class="main-img"><img src="{{pro.image.url}}" alt="Category"
+                  style=" width: 100%!important;height: 100% !important;"></div>            
+            </div>
+          </a>
+          <div class="card-body text-center">
+            <h4 class="card-title">{{pro.name}}</h4>
+            <p class="text-muted">{{pro.price}} dh </p>
+            <button class="btn btn-outline-dark border-2"
+              style="border-radius: 0px;font-family: 'Arial';font-weight: 600;" href="#" data-abc="true"><i
+                class="bi bi-bag-fill"></i> Ajouter au Panier</button>
+          </div>        
+        </div>      
+      </div>    
+    
+      {% endfor %}        
+    </div>
+  </div></div>

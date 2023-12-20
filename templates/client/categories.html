@@ -1,0 +1,26 @@
+{% include 'header.html' %}
+<link rel="stylesheet" href="/static/css/categorie.css" />
+<h2 style="text-align: center; margin-top: 50px;">All Categories </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 col-sm-6 p-6 mt-4">
+      {% for cat in category%}
+      <div class="item content" style="margin-right: 5%;">
+        <div style=" width: 250px; height: 250px; overflow: hidden;display: flex;
+    align-items: center; 
+    justify-content: center;  border-radius: 0;box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.555);border: 3px solid #d13100;">
+          <a><img src ="{{cat.image.url}}" class="content-image img-fluid border"
+              style="width: 250px;background-color: #1a1a1a;">
+            <div class="content-details fadeIn-bottom">
+              <p class="content-text" style="font-weight: normal; text-shadow: 0px 1px 2px rgb(0, 0, 0);font-family: 'Space Grotesk'!important;"> {{cat.description}}
+              </p>
+            </div>
+          </a></div>
+
+        <a href="{% url 'liste_produits' cat.id %}"> <h5 class="text-center mt-3 mb-3 hover" title="description"> {{cat.name}}</h5></a>
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

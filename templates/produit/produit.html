@@ -1,0 +1,93 @@
+{% include 'header.html' %}
+<link rel="stylesheet" href="/static/css/product.css">
+
+<div class="container">
+  <form method="post" action="{% url 'create_order' %}">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ produit.id }}">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-6">
+            <div class="ce" style="margin-top: 9%;">
+              <div class="container" style=" width:100%;
+            height:350px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden">
+                <img src="{{produit.image.url}}" style="flex-shrink:0;
+                -webkit-flex-shrink: 0;
+                max-width:70%;
+                max-height:90%;" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-6">
+            <h2 class="box-title mt-5" style="margin-left: 2px;letter-spacing: -0.05em;">{{produit.name}}</h2>
+            <h4> Description</h4>
+            <p style="font-weight: 100; font-size: 16px;text-align: justify;">{{produit.description|linebreaks}}</p>
+            <hr>       
+           
+            <h4 class="tags" data-gloss="{{produit.quantity}} In stock">Quantity {%if produit.quantity <= 5 and produit.quantity != 0 %} <span style="font-size: 15px;color:red;"> only {{produit.quantity}} left </span>{% endif %} </h4>
+            {%if produit.quantity > 0 %}
+            <div class="mt-2">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-lg btn-outline-dark border-1 minus"
+                  style="border-radius: 0px;font-family: 'Arial';" data-abc="true"> - </button>
+                <input type="number" id="quantity" name="quantity" value="1" class="btn btn-outline-dark border-1 "
+                  style="width: 60px;border-radius: 0px;font-family: 'Arial';color: black !important; background-color: white !important;"
+                  data-abc="true">
+
+                <button class="btn btn-lg btn-outline-dark border-1 plus"
+                  style="border-radius: 0px;font-family: 'Arial';" data-abc="true"> + </button>
+              </div>
+            </div>
+            {% else %}
+            <div class="mt-2">
+              <h5 class="btn btn-outline-danger border-3 disabled" style="border-radius: 0;">Out Of Stock</h5>
+            </div>
+            {% endif %}
+            <hr>
+            <h4>Price</h4>
+            <p class="mt-2" style="font-size: 22px;letter-spacing: -0.1em;font-weight: 200;">
+              {{produit.price}} dh
+            </p>
+            {% if messages %}            
+              {% for message in messages %}
+              {% if message.tags == "success" %}             
+              <p class="text-success"><i class="bi bi-check-circle-fill"></i> {{ message }} <a class="btn btn-sm btn-success text-white" style="border-radius: 0;" href="{% url 'vieworder' %}">See All orders</a></p> 
+              {%else%} 
+              <p class="text-danger" style="color: red !important;;"><i class="bi bi-exclamation-diamond-fill"></i> {{ message }}</p>
+              {% endif %}
+                {% endfor %}
+            {% endif %}
+            <button type="submit" class="btn btn-outline-dark border-2"
+              style="border-radius: 0px;font-family: 'Arial';font-weight: 600;" href="#" data-abc="true"><i
+                class="bi bi-bag-fill"></i> Ajouter au Panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  $(document).ready(function () {
+    $('.minus').click(function () {
+      var $input = $(this).parent().find('input');
+      var count = parseInt($input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      $input.val(count);
+      $input.change();
+      return false;
+    });
+    $('.plus').click(function () {
+      var $input = $(this).parent().find('input');
+      $input.val(parseInt($input.val()) + 1);
+      $input.change();
+      return false;
+    });
+  });
+</script>

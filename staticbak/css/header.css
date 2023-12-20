@@ -1,0 +1,84 @@
+header {
+    border-bottom: solid 2px black;
+  }
+  
+  header .navbar-brand {
+    margin-top: 5px;
+    max-width: 150px;
+  }
+  
+  .header-search .input-group-addon button {    
+    margin: 5px;
+  }
+  
+  /* End Header Search Bar */
+  
+  /* Header cart CSS */
+  header .cart a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  header .cart {
+    position: relative;
+    left: -15px;
+  }
+  
+  header .cart a span.number {
+    position: relative;
+    left: 38px;
+    top: -4px;
+    color: #ef2d2c;
+  }
+  
+  header .cart {
+    position: relative;
+    left: 2px;
+    top: 15px;
+    margin-right: 15px;
+  }
+  header .cart1 {
+    position: relative;
+    left: 2px;
+    top: 15px;
+    margin-right: 15px;
+  }
+  a {
+    text-decoration: none;
+    font-weight: 800;
+    color: #000;
+  }
+  /* End Header cart CSS */
+  
+  /* Responsive CSS */
+  @media (max-width: 991px) {
+    header .cart a img {
+      width: 30px;
+      margin-left: 10px;
+    }
+  
+    header .cart {
+      left: 4px;
+      top: 20px;
+      font-size: 14px;
+    }
+    header .cart1 {
+      left: 4px;
+      top: 20px;
+      font-size: 14px;
+    }
+  
+    header {
+      padding: 10px 0px;
+    }
+  
+    .cart-login {
+      position: absolute;
+      right: 70px;
+    }
+  
+    header .navbar-brand {
+      max-width: 150px;
+    }
+  }
+  
