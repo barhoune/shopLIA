@@ -1,0 +1,28 @@
+/* img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);    
+} */
+.form-control{
+    border: 2px solid black;
+    border-radius: 0px;
+}
+body{
+    background-image: url("https://wallpapersmug.com/download/1600x900/298525/sunset-street-original-anime.jpg");
+}
+.sign:hover{
+    color: orangered !important;
+}
+.card{
+background: rgba(204, 204, 204, 0.3);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(0.2px);
+-webkit-backdrop-filter: blur(0.2px);
+border: 1px solid rgba(204, 204, 204, 0.78);
+}
+
+@media (max-width:800px) {
+    .card{
+        transform: scale(0.7);
+    }
+}

@@ -38,9 +38,10 @@
           <div class="card-body text-center">
             <h4 class="card-title">{{pro.name}}</h4>
             <p class="text-muted">{{pro.price}} dh </p>
+            <a href="{% url 'produit' pro.id %}">
             <button class="btn btn-outline-dark border-2"
-              style="border-radius: 0px;font-family: 'Arial';font-weight: 600;" href="#" data-abc="true"><i
-                class="bi bi-bag-fill"></i> Ajouter au Panier</button>
+              style="border-radius: 0px;font-family: 'Arial';font-weight: 600;"  data-abc="true"><i
+                class="bi bi-bag-fill"></i> View Product</button></a>
           </div>        
         </div>      
       </div>    

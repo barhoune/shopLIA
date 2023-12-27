@@ -35,8 +35,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [    
-    'admin_interface',
+    # 'admin_interface',
     'colorfield',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',    
     'django.contrib.contenttypes',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'produit',    
     'client',
     'order',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +160,78 @@ EMAIL_PORT = 587  # Remplacez par le port SMTP (par exemple, 25, 587, etc.)
 EMAIL_HOST_USER = 'lahs63993@gmail.com'  # Remplacez par le nom d'utilisateur SMTP
 EMAIL_HOST_PASSWORD = 'djangoProject'  # Remplacez par le mot de passe SMTP
 EMAIL_USE_TLS = True 
+JAZZMIN_SETTINGS: dict[str, any] = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Shoplia",
+    # Title on the brand, and login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "Shoplia",
+    "site_brand":"ShopLIA Admin",
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "images/logo1.jpg",
+    # Relative path to logo for your site, used for login logo (must be present in static files. Defaults to site_logo)
+    "login_logo": "images/logo.png",
+    # Logo to use for login form in dark themes (must be present in static files. Defaults to login_logo)    
+    # CSS classes that are applied to the logo
+    "site_logo_classes": "img-circle",
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": "images/favicon.ico",
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to Shoplia Administration",
+    # Copyright on the footer
+    "copyright": "Shoplia 2023 - Made of a collaboration between Salah Habyby and Hamza Barhoune",
+ 
+   
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": None,
+   
+    
+   
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "admin.LogEntry": "fas fa-file",
+        "produit.produit": "fas fa-shopping-bag",
+        "order.order":"fas fa-shopping-cart", 
+        "category.category":"fas fa-layer-group",       
+        
+    },
+    # Icons that are used when one is not manually specified
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    "show_ui_builder": True,
+    
+    
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-info",
+    "accent": "accent-info",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-info",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "default",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-outline-info",
+        "warning": "btn-outline-warning",
+        "danger": "btn-outline-danger",
+        "success": "btn-outline-success"
+    }
+}

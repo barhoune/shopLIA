@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-lg-7 col-md-7 col-sm-6">
-            <h2 class="box-title mt-5" style="margin-left: 2px;letter-spacing: -0.05em;">{{produit.name}}</h2>
+            <h2 class="box-title mt-5" style="margin-left: 2px;letter-spacing: -0.05em;color: #ff3c00;">{{produit.name}}</h2>
             <h4> Description</h4>
             <p style="font-weight: 100; font-size: 16px;text-align: justify;">{{produit.description|linebreaks}}</p>
             <hr>       
@@ -35,14 +35,24 @@
               <div class="btn-group" role="group" aria-label="Basic example">
                 <button class="btn btn-lg btn-outline-dark border-1 minus"
                   style="border-radius: 0px;font-family: 'Arial';" data-abc="true"> - </button>
-                <input type="number" id="quantity" name="quantity" value="1" class="btn btn-outline-dark border-1 "
+                <input type="number" id="quantity" min="1" name="quantity" value="1" class="btn btn-outline-dark border-1 "
                   style="width: 60px;border-radius: 0px;font-family: 'Arial';color: black !important; background-color: white !important;"
                   data-abc="true">
-
+                  <script>
+                    $("#quantity").on({
+                    focus: function(){
+                       if (this.value.trim() == 'username') this.value = 1;
+                    },
+                    blur: function() {
+                       if (!this.value.trim().length) this.value = 1;
+                    }
+                    });
+                 </script>
                 <button class="btn btn-lg btn-outline-dark border-1 plus"
                   style="border-radius: 0px;font-family: 'Arial';" data-abc="true"> + </button>
               </div>
-            </div>
+            </div> 
+            
             {% else %}
             <div class="mt-2">
               <h5 class="btn btn-outline-danger border-3 disabled" style="border-radius: 0;">Out Of Stock</h5>
@@ -71,7 +81,7 @@
     </div>
   </form>
 </div>
-<script>
+<script>   
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   $(document).ready(function () {

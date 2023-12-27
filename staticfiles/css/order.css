@@ -1,0 +1,33 @@
+.card{
+    border-radius: 0;
+    margin: 10px;
+}    
+.btn {
+  border-radius: 0;
+  border: solid 4px;
+  font-weight: 700;
+}
+i {
+  font-size: larger;
+}
+
+@media (max-width: 991px) {
+  .card,
+  .p-2 {
+    transform: scale(0.8, 0.8) !important;
+    -ms-transform: scale(0.8, 0.8) !important; /* IE 9 */
+    -webkit-transform: scale(0.8, 0.8) !important; /* Safari and Chrome */
+    -o-transform: scale(0.8, 0.8) !important; /* Opera */
+    -moz-transform: scale(0.8, 0.8) !important; /* Firefox */
+  }
+  .card {
+    border-radius: 0px;
+  }
+  .p-2 {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .border-sm-start-none {
+    border-left: none !important;
+  }
+}
