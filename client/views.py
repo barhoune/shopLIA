@@ -8,22 +8,42 @@ from .models import UserProfile
 from .forms import UserProfileForm, CustomUserCreationForm, SignupForm
 from django.contrib.auth.models import User
 from category.models import Category
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 @login_required
-def search_feature(request):    
-    defquery=request.session.get('defquery')
+def search_feature(request):
+    defquery = request.session.get('defquery')
     sort_by = request.POST.get('sort_by', 'id')
-    if request.method == 'POST':        
+    page_number = request.GET.get('page', 1)
+
+    search_query = None
+
+    if request.method == 'POST':
         search_query = request.POST.get('search_query', defquery)
-        produits = Produit.objects.filter(name__icontains=search_query)          
-        produits= produits.order_by(sort_by)   
-        sort_by = request.POST.get('sort_by', 'id')
+    elif request.method == 'GET':
+        sort_by = request.GET.get('sort_by', 'id')
+        search_query = request.GET.get('search_query', defquery)
+
+    if search_query is not None:
+        produits = Produit.objects.filter(name__icontains=search_query)
+        produits = produits.order_by(sort_by)
+
+        paginator = Paginator(produits, 16)  # Show 10 produits per page
+
+        try:
+            produits = paginator.page(page_number)
+        except PageNotAnInteger:
+            produits = paginator.page(1)
+        except EmptyPage:
+            produits = paginator.page(paginator.num_pages)
+
         request.session['defquery'] = search_query
-        return render(request, 'client/search.html', {'query':search_query, 'produits':produits,'sort_by': sort_by})
+
+        return render(request, 'client/search.html', {'query': search_query, 'produits': produits, 'sort_by': sort_by})
     else:
         return render(request, 'client/espace_utilisateur.html')
-
+    
 @login_required
 def espace_utilisateur(request):    
     categorie=Category.objects.all().order_by('-id')[:3]                

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -32,10 +33,19 @@ def invoice(request):
 
 @login_required
 def liste_produits(request, id): 
-    category= Category.objects.get(id=id)
-    products = category.cproducts.all()     
-    sort_by = request.GET.get('sort_by', 'id')  
-    products= products.order_by(sort_by)    
+    category = Category.objects.get(id=id)
+    products = category.cproducts.all()  
+    sort_by = request.GET.get('sort_by', 'id')
+    products = products.order_by(sort_by)    
+    items_per_page = 12    
+    page = request.GET.get('page')   
+    paginator = Paginator(products, items_per_page)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:        
+        products = paginator.page(1)
+    except EmptyPage:        
+        products = paginator.page(paginator.num_pages)
     return render(request,'produit/liste_produits.html',{"products":products,"category":category, 'sort_by': sort_by})
 
 
