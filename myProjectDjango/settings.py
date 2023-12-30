@@ -36,6 +36,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [    
     # 'admin_interface',
+    'admin_tools_stats', 
+    'django_nvd3',
     'colorfield',
     'jazzmin',
     'django.contrib.admin',
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'client',
     'order',
     'imagekit',
+    'easyaudit',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
 ]
 
 ROOT_URLCONF = 'myProjectDjango.urls'
@@ -194,6 +198,10 @@ JAZZMIN_SETTINGS: dict[str, any] = {
         "produit.produit": "fas fa-shopping-bag",
         "order.order":"fas fa-shopping-cart", 
         "category.category":"fas fa-layer-group",       
+        "easyaudit.crudevent":"fas fa-database",
+        "easyaudit.loginevent":"fas fa-power-off",
+        "easyaudit.requestevent":"fas fa-server",
+       
         
     },
     # Icons that are used when one is not manually specified

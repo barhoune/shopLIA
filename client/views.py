@@ -9,6 +9,7 @@ from .forms import UserProfileForm, CustomUserCreationForm, SignupForm
 from django.contrib.auth.models import User
 from category.models import Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 # Create your views here.
 
 @login_required
@@ -26,7 +27,7 @@ def search_feature(request):
         search_query = request.GET.get('search_query', defquery)
 
     if search_query is not None:
-        produits = Produit.objects.filter(name__icontains=search_query)
+        produits = Produit.objects.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
         produits = produits.order_by(sort_by)
 
         paginator = Paginator(produits, 16)  # Show 10 produits per page

@@ -58,11 +58,35 @@
           margin: 5px;
           font-weight: 700;
           font-family: 'Ubuntu';
+          color: white !important;
+          border: solid 3px white !important;
+        }
+        .ssse{
+          width: fit-content;  
+          border-radius: 0; 
+          margin: 5px;
+          font-weight: 700;
+          font-family: 'Ubuntu';
           border: solid 2px black !important;
         }
         .sss:hover{
+          background-color:rgb(255, 255, 255) ;
+          color: rgb(0, 0, 0) !important;
+          border: solid 2px white!important;
+        }
+        .ssse:hover{
           background-color:black ;
-          color: white !important;
+          color: white !important;         
+        }
+        .ssse .active{
+            border-color: rgb(50, 50, 50) !important;
+            background-color: rgb(50, 50, 50) !important;
+        }
+        .active a{            
+            color: white !important;
+        }
+        .ssse:hover a{
+            color: white!important;
         }
       </style>
    <div class="pagination justify-content-center mt-3">
@@ -85,13 +109,13 @@
             {% with lower_limit=produits.number|add:'-2' %}
                 {% with upper_limit=produits.number|add:'2' %}
                     {% if i >= lower_limit and i <= upper_limit %}
-                        <li class="page-item {% if i == produits.number %}active{% endif %}">
-                            <a class="btn btn-outline-dark sss" href="?{% if sort_by %}sort_by={{ sort_by }}&{% endif %}{% if query %}search_query={{ query }}&{% endif %}page={{ i }}">{{ i }}</a>
+                        <li class="btn btn-outline-dark ssse {% if i == produits.number %}active{% endif %}">
+                            <a class="aae" href="?{% if sort_by %}sort_by={{ sort_by }}&{% endif %}{% if query %}search_query={{ query }}&{% endif %}page={{ i }}">{{ i }}</a>
                         </li>
                     {% endif %}
+                    {% endwith %}
                 {% endwith %}
-            {% endwith %}
-        {% endfor %}
+            {% endfor %}
 
             {% if produits.has_next %}
                 <li class="page-item">

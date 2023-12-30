@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 
-
+@login_required
 def vieworder(request):     
     uid=request.user
     orders= Order.objects.filter(user=uid) 
