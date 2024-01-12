@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [    
     # 'admin_interface',
+    'chartjs',
     'admin_tools_stats', 
     'django_nvd3',
     'colorfield',
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'produit',    
     'client',
     'order',
+    'myProjectDjango',
+    'admin_custom',
     'imagekit',
     'easyaudit',
 ]

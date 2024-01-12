@@ -10,6 +10,12 @@ class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
     product = models.ForeignKey(Produit, related_name='orders', on_delete=models.CASCADE)
 
+    def total(self):
+        qte=int(self.qte)
+        price=int(self.product.price)
+        total=qte*price
+        return total
+    
     def __str__(self):
         qte=int(self.qte)
         price=int(self.product.price)

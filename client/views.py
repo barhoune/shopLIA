@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from category.models import Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from order.models import Order
 # Create your views here.
 
 @login_required
@@ -54,7 +55,12 @@ def espace_utilisateur(request):
 def categories(request):
     category= Category.objects.all()
     return render(request, 'client/categories.html',{"category":category})
-
+@login_required
+def deleteorder(request):
+    if request.method== 'GET':
+        uid= request.user
+        Order.objects.filter(user=uid).delete()
+    return redirect('vieworder')    
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('firstName')

@@ -10,4 +10,5 @@ urlpatterns = [
     path('search/', views.search_feature, name='search-view'),
      path('signup/', views.signup, name='signup'),
     path('categories/', views.categories, name='categories'),
+    path('deleteorder/', views.deleteorder, name='deleteorder'),
 ]
