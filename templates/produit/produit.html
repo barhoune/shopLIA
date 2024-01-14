@@ -71,10 +71,15 @@
               <p class="text-danger" style="color: red !important;;"><i class="bi bi-exclamation-diamond-fill"></i> {{ message }}</p>
               {% endif %}
                 {% endfor %}
-            {% endif %}
+            {% endif %} 
+            {% if produit.quantity > 0%}
             <button type="submit" class="btn btn-outline-dark border-2"
               style="border-radius: 0px;font-family: 'Arial';font-weight: 600;" href="#" data-abc="true"><i
-                class="bi bi-bag-fill"></i> Ajouter au Panier</button>
+                class="bi bi-bag-fill"></i> Order Product</button>
+            {% else %}        <button  class="btn btn-outline-dark border-2 disabled "
+            style="border-radius: 0px;font-family: 'Arial';font-weight: 600;" href="#" data-abc="true" disabled><i class="bi bi-bag-x-fill"></i>
+             Order Unavailable</button>
+            {%endif%}  
           </div>
         </div>
       </div>
