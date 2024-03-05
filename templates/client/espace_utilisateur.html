@@ -51,9 +51,17 @@
   </p>
 
   <div class="d-flex justify-content-center categories">
-    <a class="d-flex flex-column" style="margin: 3%; color: black">
-      <img src="{% static 'images/new.png'%}" style="max-width: 100px" />
-      <h4 style="text-align: center">New Arrivals</h4>
+    <a class="d-flex flex-column"  color: black">
+      <form role="search" method="POST" action="{% url 'search-view' %}">
+        {% csrf_token %}       
+          <input name="search_query" value=" " hidden/>       
+            <img src="{% static 'images/new.png'%}" style="max-width: 100px;margin-left: 30px; margin-top: 30px;" />   
+            <br>
+            <button class="btn btn-link" style="text-align: center; color:black; text-decoration: none;" type="submit"><h4 >New Arrivals</h4></button>
+         
+       
+      </form>
+      
     </a>
     <a class="d-flex flex-column" style="margin: 3%; color: black" href="{%url 'liste_produits' '2'%}">
       <img src="{% static 'images/electronics.png' %}" style="max-width: 100px" />
@@ -72,7 +80,7 @@
       <h4 style="text-align: center">See All</h4>
     </a>
   </div>
-  <!-- <div *ngFor=" let categorie of categories"> -->
+
     {% for categories in categorie %}
     <div>
     <div class="d-flex justify-content-between">
@@ -90,27 +98,22 @@
     <br />
     <div class="owl-carousel owl-theme">
       {% for pro in categories.cproducts.all %}
+      
       <div class="item">       
         <a href="{% url 'produit' pro.id %}">
-        <div class="card" style="width: 350px; height: fit-content; margin-bottom: 30px">
+        <div class="card" style="width: 250px; height: fit-content; margin-bottom: 30px">
           <div class="card-body">
             <div class="d-flex justify-content-center">
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 clas"
-                style="width: 300px; height: 450px">
+                style="width: 300px; height: 400px">
                 <div class="imgproduct">
                   <img
                    src="{{ pro.image.url }}"
-                    class="w-6 shadow-2" style="width: 250px" />
+                    class="w-6 shadow-2" style="width: 200px" />
                 </div>
                 <div>
-                  <h4 class="mb-1"> {{pro.name}} </h4>
-                  <h6 class="mt-0 mb-3">{{ pro.price }} Dh</h6>
-                  <!--div class="car-buttons mt-5">
-                    <a href=""><i class="bi bi-search" style="color: black !important; font-size: 30px"></i></a>
-                    &nbsp;
-                    <a href="#"><i class="bi bi-bag-check-fill"
-                        style="color: black !important; font-size: 30px"></i></a>
-                  </!--div-->
+                  <h5 class="mb-1"> {{pro.name}} </h5>
+                  <h6 class="mt-0 mb-3">{{ pro.price }} Dh</h6>                 
                 </div>
               </div>
             </div>
@@ -144,7 +147,7 @@
         items: 3
       },
       1000: {
-        items: 3
+        items: 5
       }
     }
   })
